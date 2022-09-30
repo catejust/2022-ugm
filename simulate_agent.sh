@@ -237,7 +237,7 @@ for domain in $domain_list; do
 
 		logout)	for i in $newGroup; do
 					sleep $(((`date +%-S`*`date +%-S`+1)%90))
-          updateAgent $domain $i notUsed manual make_ma
+          				updateAgent $domain $i notUsed manual make_ma
 					agentLog Manual create $i $domain
 					updateSubscriber "$domain" $i '<null>'
 					# cause agents whose extension is divisble by a random selection of 2,3,6, or 4
@@ -245,12 +245,12 @@ for domain in $domain_list; do
 					[[ $((i %  $(((`date +%-S`*`date +%-S`+1)%7 + 1)) )) -eq 0 ]] && echo "`date +%Y%m%d\ %H:%M:%S` Agent $i@$domain forgot to logout" >> /var/log/agents.log || agentLog Logout create $i $domain
 				done & ;;
 
-    unavailable) for i in $newGroup; do
-        sleep $(((`date +%-S`*`date +%-S`+1)%90))
-        updateAgent $domain $i notUsed manual make_ma
-        agentLog Manual create $i $domain
-				updateSubscriber "$domain" $i 'Unavailable'
-        done & ;;
+    		unavailable) for i in $newGroup; do
+       					sleep $(((`date +%-S`*`date +%-S`+1)%90))
+        				updateAgent $domain $i notUsed manual make_ma
+        				agentLog Manual create $i $domain
+					updateSubscriber "$domain" $i 'Unavailable'
+        			done & ;;
 
 		break)	for i in $newGroup; do
 					sleep $(((`date +%-S`*`date +%-S`+1)%90))
